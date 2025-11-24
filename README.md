@@ -1,112 +1,78 @@
-# AI_Vision_pipline_with_AZURE
-<img width="1912" height="907" alt="Screenshot 2025-11-24 194810" src="https://github.com/user-attachments/assets/c91a7d93-b33b-4262-809c-4c38fac8db50" />
-Image-to-Multilingual-Story AI Pipeline (Azure + Gemini + Gradio)
+# **AI Multi-Service Pipeline: Vision, Creative Writing, Style Transfer, & Translation**
 
-Image-to-Multilingual-Story AI Pipeline (Azure + Gemini + Gradio)
+This project demonstrates a powerful, multi-stage AI pipeline that integrates three distinct services: **Azure Computer Vision**, **Gemini (Google's Generative AI)**, and **Azure Translator** within a unified Gradio web interface. The application takes an image input and performs a chain of analyses and transformations, showcasing seamless interaction between vision, text generation, and translation models.
 
-This project demonstrates a complete AI pipeline that transforms a single uploaded image into a creative story, rewritten in a selected style, and translated into any language — all in one seamless Gradio web app.
+The entire workflow, from image upload to final translated text, is executed in a single, efficient process.
 
-The workflow integrates:
+## **🚀 Key Features & Workflow**
 
-Azure Computer Vision → Image understanding
+The application executes the following four steps in sequence:
 
-Google Gemini (gemini-2.5-flash) → Creative story generation & style transformation
+1.  **Image Analysis (Azure Computer Vision):** The uploaded image is sent to Azure CV to generate descriptive **tags** and a short **caption**.
+2.  **Creative Content Generation (Gemini):** Using the tags and caption from Step 1, the Gemini model writes a short, engaging, **creative paragraph** (The Base Text).
+3.  **Style Transfer/Rewriting (Gemini):** The Base Text from Step 2 is rewritten by the Gemini model into a **user-selected style** (e.g., professional, Shakespearean, marketing).
+4.  **Language Translation (Azure Translator):** The style-rewritten text from Step 3 is translated into a **target language** (e.g., Arabic, French) using Azure Translator.
 
-Azure Translator → Multilingual translation
+## **🛠️ Technologies Used**
 
-Gradio → Interactive front-end
+* **Front-end & Interface:** [Gradio](https://www.gradio.app/)
+* **Vision AI:** [Azure Computer Vision](https://azure.microsoft.com/en-us/products/cognitive-services/computer-vision)
+* **Generative AI & Rewriting:** [Gemini API (using `google-generativeai`)](https://ai.google.dev/gemini-api/docs)
+* **Translation:** [Azure Translator](https://azure.microsoft.com/en-us/products/cognitive-services/translator)
+* **Core Language:** Python (`requests`, `os`, `uuid`, `json`, `io`)
 
-The entire pipeline is implemented as a single-file Python application for clarity and portability.
+## **🖼️ Screenshot of the Application**
 
-🚀 Overview
-
-This project shows how to orchestrate multiple AI providers inside one workflow by:
-
-Combining vision, generation, style modification, and translation into a single user request.
-
-Managing API keys securely with environment variables.
-
-Maintaining a clean, production-friendly architecture that is easy to deploy anywhere (local, Azure, Docker, etc.).
-
-Providing a user-friendly Gradio interface to experiment with the pipeline in real time.
-
-🧠 Pipeline Architecture
-graph TD
-    A[Image Input (Gradio)] --> B(Vision API - Azure CV)
-    B --> C(Creative Text Generation - Gemini)
-    C --> D(Style Transformation - Gemini)
-    D --> E(Translation - Azure Translator)
-    E --> F[Multilingual Output (Gradio)]
-
-    style A fill:#4CAF50,stroke:#333,stroke-width:2px
-    style B fill:#2196F3,stroke:#333,stroke-width:2px
-    style C fill:#FFC107,stroke:#333,stroke-width:2px
-    style D fill:#FFC107,stroke:#333,stroke-width:2px
-    style E fill:#2196F3,stroke:#333,stroke-width:2px
-    style F fill:#4CAF50,stroke:#333,stroke-width:2px
-
-✨ Features
-🔍 Image Understanding (Azure CV)
-
-Extracts captions, tags, and object metadata.
-
-✍️ Creative Story Generation (Gemini)
-
-Creates context-aware stories based on vision output.
-
-🎨 Style Transformation (Gemini)
-
-Rewrites the base story into:
-
-Poetic
-
-Academic
-
-Marketing
-
-Fairy-tale
-
-Or any custom style
-
-🌍 Multilingual Translation (Azure Translator)
-
-Produces final styled story in dozens of supported languages.
-
-🖥️ Web Interface Demo (Gradio)
-
-Clean, single-page UI for interactive testing.
-
-🧰 Tech Stack
-Component	Technology
-Computer Vision	Azure Cognitive Services
-Translation	Azure Translator
-Generative AI	Google Gemini (gemini-2.5-flash)
-Front-end	Gradio
-Language	Python
-Dev Environment	Azure Machine Learning Studio Notebooks
-📦 Installation
-1. Clone the Repository
-git clone https://github.com/<your-username>/AI_Vision_Pipeline_with_AZURE.git
-cd AI_Vision_Pipeline_with_AZURE
-
-2. Install Dependencies
-pip install -r requirements.txt
-
-3. Configure Environment Variables
-
-You must set:
-
-export AZURE_CV_ENDPOINT="https://<your-cv-resource>.cognitiveservices.azure.com/"
-export AZURE_CV_KEY="<YOUR_AZURE_CV_KEY>"
-export GEMINI_API_KEY="<YOUR_GEMINI_KEY>"
-export AZURE_TRANS_KEY="<YOUR_TRANSLATOR_KEY>"
-export AZURE_TRANS_REGION="uaenorth"
+![Uploading Screenshot 2025-11-24 194810.png…]()
 
 
-Or create a .env file:
 
-AZURE_CV_ENDPOINT=https://<your-cv-resource>.cognitiveservices.azure.com/
-AZURE_CV_KEY=YOUR_AZURE_CV_KEY
-GEMINI_API_KEY=YOUR_GEMINI_KEY
-AZURE_TRANS_KEY=YOUR_TRANSLATOR_KEY
-AZURE_TRANS_REGION=uaenorth
+## **⚙️ Setup and Configuration**
+
+### **1. Prerequisites**
+
+* Python 3.8+
+* The required API keys and endpoints for the services below.
+
+### **2. Environment Variables**
+
+The application relies on environment variables for secure key management. You **must** replace the placeholder values in your `app.py` or set these variables in your environment.
+
+| Variable Name | Service | Description |
+| :--- | :--- | :--- |
+| `AZURE_CV_ENDPOINT` | Azure Computer Vision | Your Azure CV endpoint URL. |
+| `AZURE_CV_KEY` | Azure Computer Vision | Your API key for the Azure CV service. |
+| `GEMINI_API_KEY` | Gemini API | Your API key for the Gemini model. |
+| `AZURE_TRANS_KEY` | Azure Translator | Your API key for the Azure Translator service. |
+| `AZURE_TRANS_REGION` | Azure Translator | The region associated with your Translator resource (e.g., 'uaenorth'). |
+
+### **3. Installation**
+
+1.  **Clone the repository (or save `app.py`):**
+    ```bash
+    # If using git
+    git clone [your-repo-link]
+    cd [your-repo-name]
+    # Otherwise, ensure app.py is saved locally
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    pip install gradio google-generativeai requests
+    ```
+
+3.  **Run the application:**
+    ```bash
+    python app.py
+    ```
+
+The Gradio interface will launch, typically accessible at `http://127.0.0.1:7860` in your web browser.
+
+## **📝 Customization**
+
+* **Styles:** The list of available rewrite styles (`STYLE_OPTIONS`) can be easily updated in the `app.py` file to include other tones (e.g., "Pirate vernacular," "Film critic review").
+* **Languages:** The target languages for translation (`LANGUAGE_OPTIONS`) can be expanded using the two-letter language codes supported by Azure Translator.
+
+## **🤝 Contributing**
+
+Feel free to fork this project and submit pull requests to enhance the pipeline, add more AI services, or improve the Gradio interface!
