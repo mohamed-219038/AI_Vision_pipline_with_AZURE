@@ -23,7 +23,7 @@ The application executes the following four steps in sequence:
 
 ## **🖼️ Screenshot of the Application**
 
-![Uploading Screenshot 2025-11-24 194810.png…]()
+![Uploading Screenshot 2025-11-24 194810.png…]() 
 
 
 
