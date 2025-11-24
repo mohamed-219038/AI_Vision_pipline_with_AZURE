@@ -1,4 +1,6 @@
 # **AI Multi-Service Pipeline: Vision, Creative Writing, Style Transfer, & Translation**
+![Uploading Screenshot 2025-11-24 194810.png…]()
+
 
 This project demonstrates a powerful, multi-stage AI pipeline that integrates three distinct services: **Azure Computer Vision**, **Gemini (Google's Generative AI)**, and **Azure Translator** within a unified Gradio web interface. The application takes an image input and performs a chain of analyses and transformations, showcasing seamless interaction between vision, text generation, and translation models.
 
